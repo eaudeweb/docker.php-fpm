@@ -34,6 +34,6 @@ RUN mv /var/www/html/composer.phar /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash -
 RUN apt-get update && apt-get autoremove -y && apt-get install nodejs -y
-# RUN npm --global install grunt grunt-cli
+RUN npm --global install grunt grunt-cli
 
 COPY php.ini /usr/local/etc/php
