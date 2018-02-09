@@ -1,2 +1,2 @@
-Docker image for PHP-FPM 7.1
-============================
+Docker image for PHP-FPM
+========================
