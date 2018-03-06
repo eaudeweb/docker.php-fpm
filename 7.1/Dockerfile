@@ -1,6 +1,6 @@
 FROM php:7.1-fpm
 RUN apt-get update && apt-get install -y \
-		git vim wget ssmtp unzip npm \
+		git vim wget ssmtp unzip \
 		libfreetype6-dev \
 		libjpeg62-turbo-dev \
 		libmariadb-client-lgpl-dev \
@@ -29,11 +29,11 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-install -j$(nproc) bz2 \
 	&& docker-php-ext-install -j$(nproc) zip
 
-RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/1b137f8bf6db3e79a38a5bc45324414a6b1f9df2/web/installer -O - -q | php -- --quiet
-RUN mv /var/www/html/composer.phar /usr/local/bin/composer
-RUN chmod +x /usr/local/bin/composer
-RUN curl -sL https://deb.nodesource.com/setup_9.x | bash -
-RUN apt-get update && apt-get autoremove -y && apt-get install nodejs -y
+RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/1b137f8bf6db3e79a38a5bc45324414a6b1f9df2/web/installer -O - -q | php -- --quiet \
+	&& mv /var/www/html/composer.phar /usr/local/bin/composer \
+	&& chmod +x /usr/local/bin/composer
+RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - \
+	&& apt-get install -y nodejs
 RUN npm --global install grunt grunt-cli
 
 COPY php.ini /usr/local/etc/php
