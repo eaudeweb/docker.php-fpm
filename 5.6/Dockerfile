@@ -32,5 +32,5 @@ RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/1b137f8bf6db
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - \
 	&& apt-get install -y nodejs
 RUN npm --global install grunt grunt-cli
-
+RUN wget https://github.com/drush-ops/drush/releases/download/8.1.16/drush.phar -O /usr/local/bin/drush && chmod +x /usr/local/bin/drush
 COPY php.ini /usr/local/etc/php
