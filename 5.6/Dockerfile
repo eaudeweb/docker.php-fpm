@@ -3,7 +3,7 @@ RUN apt-get update && apt-get install -y \
 		git vim wget ssmtp unzip \
 		libfreetype6-dev \
 		libjpeg62-turbo-dev \
-		libmariadb-client-lgpl-dev \
+		libmariadb-client-lgpl-dev mysql-client \
 		libmcrypt-dev \
 		libmemcached-dev \
 		libcurl4-gnutls-dev \
