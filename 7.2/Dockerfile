@@ -39,3 +39,4 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - \
 RUN npm --global install grunt grunt-cli
 RUN wget https://github.com/drush-ops/drush/releases/download/8.1.16/drush.phar -O /usr/local/bin/drush && chmod +x /usr/local/bin/drush
 COPY php.ini /usr/local/etc/php
+RUN wget https://drupalconsole.com/installer -O /usr/local/bin/drupal.phar && chmod +x /usr/local/bin/drupal.phar

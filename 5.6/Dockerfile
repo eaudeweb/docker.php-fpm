@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
 		libldap2-dev \
 		libxml2-dev \
 		zlib1g-dev libicu-dev g++ \
+		gnupg \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
 	&& docker-php-ext-install -j$(nproc) gd \
 	&& docker-php-ext-install -j$(nproc) gettext \
@@ -36,3 +37,4 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - \
 RUN npm --global install grunt grunt-cli
 RUN wget https://github.com/drush-ops/drush/releases/download/8.1.16/drush.phar -O /usr/local/bin/drush && chmod +x /usr/local/bin/drush
 COPY php.ini /usr/local/etc/php
+RUN wget https://drupalconsole.com/installer -O /usr/local/bin/drupal.phar && chmod +x /usr/local/bin/drupal.phar
