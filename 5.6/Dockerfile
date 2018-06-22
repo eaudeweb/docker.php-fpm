@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-install -j$(nproc) intl \
 	&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
 	&& docker-php-ext-install -j$(nproc) ldap \
+	&& docker-php-ext-install -j$(nproc) mcrypt \
 	&& docker-php-ext-install -j$(nproc) mysqli \
 	&& docker-php-ext-install -j$(nproc) opcache \
 	&& docker-php-ext-install -j$(nproc) pdo_mysql \
