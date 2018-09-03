@@ -23,6 +23,43 @@ services:
 - SSMTP - `sendmail` replacement, use with `eaudeweb/mailtrap` / external SMTP
 - Command line utilities: git vim wget unzip nodejs grunt
 
+# Configuring email
+
+By default all the mail is routed to the `mail` container and does not allow overriding the FROM header. To enable this you can create a custom configuration file and mount it as volume in `/etc/ssmtp/ssmtp.conf`:
+
+```
+#
+# Config file for sSMTP sendmail
+#
+# The person who gets all mail for userids < 1000
+# Make this empty to disable rewriting.
+root=postmaster
+
+# The place where the mail goes. The actual machine name is required no 
+# MX records are consulted. Commonly mailhosts are named mail.domain.com
+mailhub=mail
+
+# Where will the mail seem to come from?
+rewriteDomain=domain.com
+
+# The full hostname
+hostname=www.domain.com
+
+# Are users allowed to set their own From: address?
+# YES - Allow the user to specify their own From: address
+# NO - Use the system generated From: address
+FromLineOverride=YES
+```
+and in `docker-compose.override.yml`
+
+```
+  php:
+    container_name: prj_php
+    restart: always
+    volumes:
+      - ./ssmtp.conf:/etc/ssmtp/ssmtp.conf
+```
+
 # Build images on local
 
 ```
